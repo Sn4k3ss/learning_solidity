@@ -7,12 +7,12 @@ import calendar
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    print(f"Hi, {name}")  # Press Ctrl+F8 to toggle the breakpoint.
 
 
 # Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+if __name__ == "__main__":
+    print_hi("PyCharm")
 
 # # Getting input / printing input # #
 
@@ -51,8 +51,8 @@ print(dict1.values())
 # # Class in python
 class Animal:
     # here there are the 'public' attr
-    friendly = ''
-    domestic = ''
+    friendly = ""
+    domestic = ""
     __name = "NO_NAME"
 
     __private_attr1 = "I'm private"
@@ -81,9 +81,9 @@ class Animal:
         print("Protected attr: " + self._protected_attr1)
 
     def set_gender(self, gender):
-        if gender == 'm':
+        if gender == "m":
             self.__gender = "male"
-        if gender == 'f':
+        if gender == "f":
             self.__gender = "female"
         else:
             print("Incorrect choice: please insert 'm' or 'f'")
@@ -101,7 +101,7 @@ dog.print_info()
 
 dog.domestic = 1
 dog.friendly = 1
-dog.set_gender('f')
+dog.set_gender("f")
 dog.set_name("Laila")
 
 print("\nDog instance with updated value")
