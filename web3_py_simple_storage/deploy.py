@@ -50,8 +50,8 @@ bytecode = compiled_sol["contracts"]["SimpleStorage"]["SimpleStorage"]["evm"]["b
 # get abi
 abi = compiled_sol["contracts"]["SimpleStorage"]["SimpleStorage"]["abi"]
 
-# print(bytecode)
-# print(abi)
+print(bytecode)
+print(abi)
 
 # for connecting to Ganache 
 
