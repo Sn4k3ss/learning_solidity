@@ -121,8 +121,8 @@ class Mammal(Animal):
         # print(self.__gender)
 
 
-dolphin = Mammal()
-dolphin.print_info()
+# dolphin = Mammal()
+# dolphin.print_info()
 
 
 # # String in python
