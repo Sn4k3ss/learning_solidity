@@ -10,7 +10,6 @@ with open("./SimpleStorage.sol", "r") as file:
     # print(simple_storage_file)
 
 
-
 # compiling smart contract with solcx
 print("\n-----------  Compiling  -----------")
 time.sleep(0.2)
@@ -23,15 +22,15 @@ print("...")
 
 compiled_sol = compile_standard(
     {
-    "language": "Solidity",
-    "sources": {"SimpleStorage": {"content": simple_storage_file}},
-    "settings": {
-        "outputSelection": {
-            "*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
+        "language": "Solidity",
+        "sources": {"SimpleStorage": {"content": simple_storage_file}},
+        "settings": {
+            "outputSelection": {
+                "*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}
             }
         },
     },
-    solc_version="0.8.7"
+    solc_version="0.8.7",
 )
 
 # print(compiled_sol)
@@ -41,22 +40,26 @@ print("\nCode successfully compiled!\n")
 with open("compiled_code.json", "w") as file:
     json.dump(compiled_sol, file)
 
-print("A json with the compiled code is available in the same directory\nLook for: \"compiled_code.json\"")
+print(
+    'A json with the compiled code is available in the same directory\nLook for: "compiled_code.json"'
+)
 
 
 # get bytecode
-bytecode = compiled_sol["contracts"]["SimpleStorage"]["SimpleStorage"]["evm"]["bytecode"]["object"]
+bytecode = compiled_sol["contracts"]["SimpleStorage"]["SimpleStorage"]["evm"][
+    "bytecode"
+]["object"]
 
 # get abi
 abi = compiled_sol["contracts"]["SimpleStorage"]["SimpleStorage"]["abi"]
 
-print(bytecode)
-print(abi)
+# print(bytecode)
+# print(abi)
 
-# for connecting to Ganache 
+# for connecting to Ganache
 
 w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
-chain_id =  1337
+chain_id = 1337
 my_address = "0xf07cf888a01689146a2A4f831eCD94B5AAb00600"
 private_key = "0x4908e036ad16a2721762089202f99fc18699bd532734217eef0c1f52e1c99163"
 
@@ -73,7 +76,7 @@ nonce = w3.eth.getTransactionCount(my_address)
 
 # 1
 transaction = SimpleStorage.constructor().buildTransaction(
-    {"chainId":chain_id, "from": my_address, "nonce": nonce }
+    {"chainId": chain_id, "from": my_address, "nonce": nonce}
 )
 
 # 2 Sign
@@ -89,16 +92,34 @@ tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 print(f"Done! Contract deployed to {tx_receipt.contractAddress}")
 
 # Working with deployed Contracts
+#
+# To work with Contracts you need:
+# Contract ABI => You can get the abi from google
+# Contract Address => from the receipt if you are the one deployng the contract
 simple_storage = w3.eth.contract(address=tx_receipt.contractAddress, abi=abi)
+
+
+# 'call' -> Simulate making the transaction and get the return value
+# 'transaction' -> Actually make a state change of the blockchain
+
+# Calling function retrieve (NO STATE CHANGE)
 print(f"Initial Stored Value {simple_storage.functions.retrieve().call()}")
+
+# Executing a transaction (CHANGE BLOCKCHAIN STATE)
 greeting_transaction = simple_storage.functions.store(15).buildTransaction(
     {"chainId": chain_id, "from": my_address, "nonce": nonce + 1}
 )
+
+
 signed_greeting_txn = w3.eth.account.sign_transaction(
     greeting_transaction, private_key=private_key
 )
+
+
 tx_greeting_hash = w3.eth.send_raw_transaction(signed_greeting_txn.rawTransaction)
+
 print("Updating stored Value...")
+
 tx_receipt = w3.eth.wait_for_transaction_receipt(tx_greeting_hash)
 
 print(simple_storage.functions.retrieve().call())
