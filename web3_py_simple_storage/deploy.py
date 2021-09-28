@@ -3,6 +3,7 @@ import json
 import time
 from web3 import Web3
 import os
+from dotenv import load_dotenv
 
 # printing what's inside of "SimpleStorage.sol"
 with open("./SimpleStorage.sol", "r") as file:
@@ -58,10 +59,11 @@ abi = compiled_sol["contracts"]["SimpleStorage"]["SimpleStorage"]["abi"]
 
 # for connecting to Ganache
 
-w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
+w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:8545"))
 chain_id = 1337
-my_address = "0xf07cf888a01689146a2A4f831eCD94B5AAb00600"
-private_key = "0x4908e036ad16a2721762089202f99fc18699bd532734217eef0c1f52e1c99163"
+my_address = "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1"
+load_dotenv()
+private_key = os.getenv('PRIVATE_KEY')
 
 # create the contract in python
 SimpleStorage = w3.eth.contract(abi=abi, bytecode=bytecode)
