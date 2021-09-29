@@ -19,21 +19,21 @@ def deploy_simple_storage():
 
     account = get_account()
     contract = SimpleStorage.deploy({'from': account})
+    stored_value = contract.retrieve()
+    print(stored_value)
+    transaction = contract.store(15, {"from": account})
+    transaction.wait(1)
+    updated_stored_value = contract.retrieve()
+    print(updated_stored_value)
 
-
-def interact_with_contract():
-    contract.store(15, {"from": account})
-    print(contract.retrieve())
 
 
 def get_account():
     if network.show_active() == "development":
         return accounts[0]
     else:
-        accounts.add(config["wallets"]["from_key"])
+        return accounts.add(config["wallets"]["from_key"])
 
 
 def main():
     deploy_simple_storage()
-
-    interact_with_contract()
