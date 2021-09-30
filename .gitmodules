@@ -3,3 +3,6 @@
 [submodule "brownie_simple_storage_module"]
 	path = brownie_simple_storage_module
 	url = https://github.com/Sn4k3ss/brownie_simple_storage.git
+[submodule "brownie_smartcontract_lottery"]
+	path = brownie_smartcontract_lottery
+	url = https://github.com/Sn4k3ss/brownie_smartcontract_lottery
