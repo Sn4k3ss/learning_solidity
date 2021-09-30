@@ -1,0 +1,5 @@
+[submodule "brownie_fund_me"]
+	url = https://github.com/Sn4k3ss/brownie_fund_me.git
+[submodule "brownie_simple_storage_module"]
+	path = brownie_simple_storage_module
+	url = https://github.com/Sn4k3ss/brownie_simple_storage.git
