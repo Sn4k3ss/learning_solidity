@@ -1,8 +1,10 @@
-[submodule "brownie_fund_me"]
-	url = https://github.com/Sn4k3ss/brownie_fund_me.git
-[submodule "brownie_simple_storage_module"]
-	path = brownie_simple_storage_module
+[submodule "brownie_simple_storage"]
+	path = brownie_simple_storage
 	url = https://github.com/Sn4k3ss/brownie_simple_storage.git
+[submodule "brownie_fund_me"]
+	path = brownie_fund_me
+	url = https://github.com/Sn4k3ss/brownie_fund_me.git
 [submodule "brownie_smartcontract_lottery"]
 	path = brownie_smartcontract_lottery
 	url = https://github.com/Sn4k3ss/brownie_smartcontract_lottery
+
