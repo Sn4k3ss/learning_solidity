@@ -29,6 +29,13 @@ networks:
   mainnet-fork-dev:
     eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
     verify: False
+  polygon-test:
+    vrf_coordinator: "0x8C7382F9D8f56b33781fE506E897a4F1e2d17255"
+    eth_usd_price_feed: "0x0715A7794a1dc8e42615F059dD6e406A6594651A"
+    link_token: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
+    keyhash: "0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4"
+    fee: 100000000000000
+    verify: True
   ganache-local:
     verify: False
 wallets:
